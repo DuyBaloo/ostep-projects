@@ -18,21 +18,23 @@ int main (int argc, char *argv[])
             exit(1);
         }
         int size = sizeof(argv[2]);
-        char str[size];
-        char *b = str;
         size_t len = 0;
         size_t read;
 	fseek(fp, 0L, SEEK_END);
 	int sz = ftell(fp);
         rewind(fp);
 	int control = 0;
+	char str[sz];
+        char *b = str;
+	char *comp;
 
-        while (control != sz) 
+        while (control <= sz) 
       	{
 		read = getline(&b, &len, fp);
-		if(argv[1] == strstr(argv[1], b))
+		comp = strstr(b, argv[1]);
+		if(comp != NULL)
             {
-                printf("%s", str);
+                printf("%s", b);
             }
 		control++;
 	}
