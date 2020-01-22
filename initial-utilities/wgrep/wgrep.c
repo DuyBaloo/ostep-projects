@@ -4,16 +4,13 @@
 
 int main (int argc, char *argv[])
 {
-    if (argc <= 2)
+    if (argc < 3)
     {
         printf("Please restart the program and enter a file name.\n");
         exit(0);
     }
     else
-    {
-        char c;
-        
-        
+    {  
         FILE *fp = fopen(argv[2], "r");
         if (fp == NULL) 
         {
@@ -25,15 +22,20 @@ int main (int argc, char *argv[])
         char *b = str;
         size_t len = 0;
         size_t read;
+	fseek(fp, 0L, SEEK_END);
+	int sz = ftell(fp);
+        rewind(fp);
+	int control = 0;
 
-        
-        while ((read = getline(&b, &len, fp)) != -1) 
-        {
-		    if(argv[1] == strstr(argv[2], b))
+        while (control != sz) 
+      	{
+		read = getline(&b, &len, fp);
+		if(argv[1] == strstr(argv[1], b))
             {
-                printf("%c", b);
+                printf("%s", str);
             }
-	    }
+		control++;
+	}
 
         fclose(fp); 
     }
