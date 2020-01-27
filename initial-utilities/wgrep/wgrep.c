@@ -4,10 +4,26 @@
 
 int main (int argc, char *argv[])
 {
-    if (argc < 3)
+    if (argc == 1 || argc > 3)
     {
         printf("Please restart the program and enter a file name.\n");
         exit(0);
+    }
+    else if(argc == 2)
+    {
+        puts("Input your string:");
+        char str[1000];
+        fgets(str, sizeof(str), stdin);
+        char *comp = strstr(str, argv[1]);
+
+        if(comp != NULL)
+        {
+            printf("Input string contains search term '%s'.\n", argv[1]);
+        }
+        else
+        {
+            puts("Input string does not contain the search term.");
+        }
     }
     else
     {  
@@ -17,30 +33,30 @@ int main (int argc, char *argv[])
             printf("cannot open file\n");
             exit(1);
         }
-        int size = sizeof(argv[2]);
+
         size_t len = 0;
         size_t read;
-	fseek(fp, 0L, SEEK_END);
-	int sz = ftell(fp);
+        fseek(fp, 0L, SEEK_END);
+        int sz = ftell(fp);
         rewind(fp);
-	int control = 0;
-	char str[sz];
+        int control = 0;
+        char str[sz];
         char *b = str;
-	char *comp;
+        char *comp;
 
         while (control <= sz) 
-      	{
-		read = getline(&b, &len, fp);
-		comp = strstr(b, argv[1]);
-		if(comp != NULL)
+        {
+        read = getline(&b, &len, fp);
+        comp = strstr(b, argv[1]);
+        if(comp != NULL)
             {
                 printf("%s", b);
             }
-		control++;
-	}
+            control++;
+        }
 
-        fclose(fp); 
-    }
-    
-    
+        fclose(fp);
+        fp = NULL;
+
+    }  
 }
