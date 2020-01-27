@@ -35,7 +35,6 @@ int main (int argc, char *argv[])
         }
 
         size_t len = 0;
-        size_t read;
         fseek(fp, 0L, SEEK_END);
         int sz = ftell(fp);
         rewind(fp);
@@ -46,7 +45,7 @@ int main (int argc, char *argv[])
 
         while (control <= sz) 
         {
-        read = getline(&b, &len, fp);
+        getline(&b, &len, fp);
         comp = strstr(b, argv[1]);
         if(comp != NULL)
             {
