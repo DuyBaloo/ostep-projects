@@ -10,7 +10,7 @@ int main (int argc, char *argv[])
     }
     char c;
     
-    FILE *fp = fopen(argv[1], "r");
+    FILE *fp = fopen(argv[2], "r");
     if (fp == NULL) 
     {
         printf("cannot open file\n");
@@ -22,4 +22,5 @@ int main (int argc, char *argv[])
         printf("%c", c);
 
     fclose(fp);
+    fp = NULL;
 }
