@@ -3,13 +3,13 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc != 4)
-    {
-        printf("Please restart the program, enter file name to read from and write to.\n");
-        exit(0);
-        printf("%d", argc);
-    } 
-    else if(argc == 4)
+    // if (argc < 4)
+    // {
+    //     printf("Please restart the program, enter file name to read from and write to.\n");
+    //     exit(0);
+        
+    // } 
+    // else if(argc == 4)
     {
         printf("%d", argc);
         char c;
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
         }
 
         
-        FILE *fp1 = fopen(argv[3], "w+");
+        FILE *fp1 = fopen(argv[3], "w");
         fwrite(str1, 1, sizeof(str1), fp1);
 
         fclose(fp);
@@ -61,5 +61,5 @@ int main(int argc, char *argv[])
 
         fp = NULL;
         fp1 = NULL;
-        }
+    }
 }
