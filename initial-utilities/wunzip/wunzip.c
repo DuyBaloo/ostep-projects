@@ -24,7 +24,6 @@ int main(int argc, char *argv[])
         if(c > 0 && c < 99999)
         {
             a = c;
-            fp += 1;
         }
         if(c > 'a' && c < 'z')
         {
