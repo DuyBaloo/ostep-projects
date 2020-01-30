@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
         exit(0);
     }
 
-    char c;
+    char c, buffer[100];
     
     FILE *fp = fopen(argv[1], "r");
     if (fp == NULL) 
@@ -17,22 +17,11 @@ int main(int argc, char *argv[])
         printf("cannot open file\n");
         exit(1);
     }
+    fseek(fp, 0L, SEEK_END);
+    int sz = ftell(fp);
+    rewind(fp);
 
-    int a = 0;
-    for (c = getc(fp); c != EOF; c = getc(fp)) 
-    {
-        if(c > 0 && c < 99999)
-        {
-            a = c;
-        }
-        if(c > 'a' && c < 'z')
-        {
-            for(int i = 0; i < a; i++)
-            {
-                printf("%c", c);
-            }
-
-        }
-    }
+    fread(buffer, sz, 1, fp);
+    printf("%s\n", buffer);
     fclose(fp);
 }

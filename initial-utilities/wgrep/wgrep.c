@@ -4,7 +4,7 @@
 
 int main (int argc, char *argv[])
 {
-    if (argc == 1 || argc > 3)
+    if (argc == 1)
     {
         printf("Please restart the program and enter a file name.\n");
         exit(0);
@@ -43,7 +43,7 @@ int main (int argc, char *argv[])
         char *b = str;
         char *comp;
 
-        while (control <= sz) 
+        while (control <= sz && fp != NULL) 
         {
         getline(&b, &len, fp);
         comp = strstr(b, argv[1]);

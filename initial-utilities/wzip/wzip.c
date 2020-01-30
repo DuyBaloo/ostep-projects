@@ -3,15 +3,14 @@
 
 int main(int argc, char *argv[])
 {
-    // if (argc < 4)
-    // {
-    //     printf("Please restart the program, enter file name to read from and write to.\n");
-    //     exit(0);
-        
-    // } 
-    // else if(argc == 4)
+    if (argc < 2)
     {
-        printf("%d", argc);
+        printf("Please restart the program, enter file name to read from and write to.\n");
+        exit(0);
+        
+    } 
+    else if(argc == 2)
+    {
         char c;
         FILE *fp = fopen(argv[1], "r");
         if (fp == NULL)
