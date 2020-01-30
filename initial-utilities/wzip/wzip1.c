@@ -13,17 +13,19 @@ int main(int argc, char *argv[])
     {
         int i, j, k = 0;
         char c;
-        int arrsize = sizeof(argv)/sizeof(argv[0]);
+        int arrsize = sizeof(&argv)/sizeof(char);
+        int count[100] = {0};
+        char str[100];
+        FILE *fp[arrsize];
         for(i = 0; i < arrsize; i++)
         {
-            FILE fp[i] = fopen(argv[i + 1], "r");
+            fp[i] = fopen(argv[i + 1], "r");
             if (fp[i] == NULL)
             {
                 printf("cannot open file\n");
                 exit(1);
             }
-            int count[100] = {0};
-            char str[100];
+            
 
             for (c = getc(fp[i]); c != EOF; c = getc(fp[i])) 
             {
@@ -55,7 +57,6 @@ int main(int argc, char *argv[])
                     ++j;
                     str1[j] = str[i];
                 }
-                printf("%c", str1[i]);
             }
         
         
@@ -66,13 +67,13 @@ int main(int argc, char *argv[])
         for(i = 0; i < arrsize; i++)
         {
 
-            fclose(fp);
+            fclose(fp[i]);
         }
  
-        fclose(fp1);
+        // fclose(fp1);
 
-        fp = NULL;
-        fp1 = NULL;
+        // fp = NULL;
+        // fp1 = NULL;
     }
 
 }
